@@ -11,7 +11,7 @@ KTTK is a Python tool to build wavefunctions from separated fragments. It is com
 
 Here is an example, for an arbitarily constructed FeCp2 Cl system. If we have a gjf file for the whole system, named dd.gjf:
 
-'''
+```
 %chk=dd_mixed.chk
 %mem=24GB
 %nprocshared=24
@@ -42,10 +42,10 @@ TC
  H                 -5.86499300   -4.75446900    1.99190800
  Cl                -2.04406600    0.01490100   -1.58085900
  H                 -4.52805800   -3.22843700    3.76207200
-'''
+```
 
 Then run python3 kttk_separator.py (sto-3g is used for a rapid example):
-'''
+```
 $ python3 kttk_separator.py
 Input the gjf file for your whole molecule:
 dd.gjf
@@ -60,13 +60,13 @@ Input the charge and multiplicity for each fragment, respectively.              
 Input the kwds. Do not write guess=xxx.
 wb97xd sto-3g g09default
 Now the gjf files for each fragment is outputted. Modify them to adapt to your task, run,  and use kttk_mixer.py to build the combined fchk.
-'''
+```
 
 Then you will have three files (of course you can define more fragments if needed): dd_1.gjf (FeCp2+), dd_2.gjf (Cl-), and dd_mixed.gjf (the whole system, with the keywords inputted above, and exactly the same atomic order with the fragments). Have a check on the keywords, add anything you want. For example, if the FeCp2+ has been converged to a stable wavefunction in another calculation, write guess=read to read it in dd_1.gjf. Then run the tasks for each fragment, and you will have dd_1.fchk and dd_2.fchk.
 
 Then run tkkt_mixer.py:
 
-'''
+```
 $ python3 kttk_mixer.py
 Input the fragment fchk files, and an empty line to end the input.
 dd_1.fchk
@@ -75,7 +75,7 @@ dd_2.fchk
 Input the flag (1 or -1) for each fragment, respectively. -1 to flip the spin. E.g. 1 -1 1
 1 1
 Where to save the output fchk file? dd_mixed.fchk
-'''
+```
 
 It is done. Now dd_mixed.fchk contains the initial orbitals formed by FeCp2+(radical) and Cl-, based on the fragment orbitals inputted above. It can be unfchked and read by a Gaussian job.
 
